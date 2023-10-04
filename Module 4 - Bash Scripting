@@ -1,0 +1,90 @@
+EMBEDUR intern training program
+
+Spoken Tutorial - Bash Scripting
+
+Module 4
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Logical Operators
+
+1) Check whether the file exists and is executable using logical operators.
+    Hint:man test
+
+Script => if [[ -f "$1" && -x "$1" ]]; then
+              echo "File $1 exists and is executable."
+          else
+              echo "File $1 does not exist or is not executable."
+          fi
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Arithmetic Comparision
+
+1) Write a program to demonstrate the use of not equal to operator.
+    Hint: -ne
+
+Script => read -p "Guess The Number " num
+          guess=777
+          if [[ "$num" -ne guess ]]; then
+              echo "Sorry The Guess Is Wrong"
+          else
+              echo "You Have Guessed Right"
+          fi
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+String and File attributes
+
+1) Explore some more attributes
+    -r
+    -x
+    -o
+
+    file="./solution.txt"
+
+    if [[ -z "$file" ]]; then
+        echo "Not Available"
+
+    else 
+        if [[ -r "$file" ]]; then
+            echo "Readable!"
+        
+        elif [[ -x "$file" ]]; then
+            echo "Executable!"
+        
+        elif [[ -o "$file" ]]; then
+            echo "Owned By The User"
+
+        else
+            echo "The specification is not asked"
+
+        fi
+    fi
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Conditional Loops
+
+1) Find the sum of first n prime numbers.
+
+Script => read -p "Enter a value for n: " n
+          sum=0
+          for ((i=1;i<=n;i++))
+          do
+              flag=0
+              for ((j=1;j<=i;j++))
+                do
+                    if [[ i%j -eq 0 ]]; then
+                      flag=$((flag+1))
+                    fi
+                done
+                if [[ "$flag" -eq 2 ]]; then
+                  sum=$((sum+i))
+                fi
+          done
+          echo "The Total Sum Is $sum"
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
