@@ -1,0 +1,145 @@
+EMBEDUR Intern Training program
+
+Spoken Tutorial - Linux
+
+Module 2 
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Environment Variable
+
+1. How can you know what is the secondary command prompt set your system ?
+   How can you change the secondary command prompt from the default to your username ?
+
+Command => echo $PS2
+           export PS2=">\u> trilok> "   in the .bashrc file in the text editor
+
+Explanation => The >\u> part of the secondary command prompt is added to tell the shell to print the current username before the secondary command prompt.
+
+2. How can you ensure that the mv command (used for renaming a file) always asks for permission before overwriting an existing destination file ? 
+   [ Hint : use alias command ]
+
+Command => alias mv='mv -i' 
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Basics Of System Administration in Linux
+
+1) Create a new user account and home directory called "Duck" 
+
+Command => sudo useradd -m Duck
+
+Explanation => The -m option tells the useradd command to create a home directory for the user.
+
+2) Set the user account "Duck's" expirey date as 07 - 01 - 2015
+
+Command => usermod -e 2015-07-01 user1
+
+3) find the id of the user account "Duck"
+
+Command => id -u Duck
+
+4) Type df and du commands and see the output on your terminal.
+
+Command =>  df - The df command displays the amount of free disk space on each mounted filesystem
+            du - The du command displays the disk space usage of files and directories. 
+
+5) Type this command on the terminal and see the output :
+   du -ch *.txt
+
+Solution => display the disk space usage of files with the .txt extension in the current directory.
+            -h => human readable format
+            -c => to show only details regarding the parameter provided
+
+6) Delete the user account "Duck" permanently along with its home folder.
+
+Command => sudo userdel -r Duck
+
+Explanation => delete the user account Duck and its home directory. 
+               -r option tells the userdel command to delete the user's home directory as well as the user account
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Simple filters
+
+Questions
+
+Assignement For Topic
+Head
+Assignment i 
+Try what is shown on the video
+Assignment ii 
+1. Try to get the first 10 lines from /etc/passwd
+2. try to get just the first 3 lines from /etc/passwd
+Tail
+Assignment i 
+Try what is shown on the video
+Assignment ii 
+1. Try to get the Last 10 lines from /etc/passwd
+2. Try to get just the Last 3 lines from /etc/passwd
+3. Try to follow the log file /var/log/auth.log
+Sort
+Assignment i 
+Try what is shown on the video
+Assignment ii 
+1. Try to sort the file /etc/passwd in assending order.
+2. Try to sort the file /etc/passwd in decending order.
+3. Try to sort the file /etc/passwd in assending order based on the 3rd
+column.
+4. Try to sort the file /etc/passwd in assending order based on the 3rd
+column and ask sort to look at the thrid column as a whole number.
+Cut
+Assignment i 
+Try what is shown on the video
+Assignment ii 
+1. Try to cut just the usernames from the file /etc/passwd
+Paste
+Assignment i 
+Try what is shown on the video
+Assignment ii 
+1. Create a file alphabets.txt and key in all the 2\6 alphabets each one in
+a new line.
+2. Create a file number.txt and key in 1 to 2\6 each one in a new line.
+3. Try to paste those two files, to see which letter appears at what
+number.
+Paste alphabets.txt numbers.txt
+
+Solutions
+
+1.  vi numbers.txt
+    head numbers.txt
+    head /etc/passwd
+    head -n 3 /etc/passwd
+
+2.  tail numbers.txt
+    tail -n 3 /etc/passwd
+    tail /var/log/auth.log
+
+3.  sort /etc/passwd
+    sort -r /etc/passwd
+    sort -t: -k3n /etc/passwd
+    sort -t: -k3n /etc/passwd
+
+4.  vi marks.txt
+    cut -d: -f1 marks.txt
+    cut -d: -f1 /etc/passwd
+
+5.  vi alphabets.txt
+    vi numbers.txt
+    paste alphabets.txt number.txt
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+The Grep Command
+
+1) Explore some other commands like -E, + and ?
+
+Command => The -E option tells the grep command to use extended regular expressions.
+           The + operator in grep matches one or more occurrences of the preceding character
+           The ? operator in grep matches zero or one occurrences of the preceding character
+
+           grep -E "Hello" my_file.txt
+           grep +a my_file.txt
+           grep ?a my_file.txt
+
+
+
+
