@@ -140,6 +140,48 @@ Command => The -E option tells the grep command to use extended regular expressi
            grep +a my_file.txt
            grep ?a my_file.txt
 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+More On Grep Command
+
+1) List those entries that are 5 letters long and starts with Y?
+
+Command =>  grep -i '^Y....:' result.txt
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+The Sed Command
+
+1)Use the same text file seddemo.txt Try to print records from 6th to 12th line.
+
+Command => sed -n '6,12p' seddemo.txt
+
+Explanation => The sed command is a stream editor that can be used to edit text files and streams.
+               The -n option tells the sed command to suppress the default output, which is the entire file.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+More On Sed Command
+
+1) Use the same text file seddemo.txt Try to replace or substitute name Ankit with Ashish
+
+Command => sed 'Ankit/s/Ashish' seddemo.txt
+
+Explanation => The s command tells sed to substitute the matched text with the replacement text
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Awk Command (Basics of AWK)
+
+1. Display roll no., stream and marks of Ankit Saraf from the file awkdemo.txt.
+
+Command => awk -F "|" '/Ankit Saraf/ {print $1,$3,$6}' awkdemo.txt
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
 
 
 
