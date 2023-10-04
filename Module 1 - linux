@@ -1,0 +1,153 @@
+EMBEDUR Intern Training program
+
+Spoken Tutorial - LINUX
+
+Module 1
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Basic Commands in Linux
+
+1) Commands are actually files containing programs, often written in C. How will you find out in which directory does  the file corresponding to the man command resides?
+
+Command => where is man
+           which man
+
+Explanation => the following command to find the location of the man executable file
+
+2) How will you find out what is the use of the ps command.
+
+Command => man ps
+
+Explanation => To display the man page for the ps command
+
+                    or
+
+Command => whatis ps
+
+Explanation => This command shows a single line description about the command
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+General Purpose Utilities in Linux
+
+1)Display the calender for the month of March 2012 
+
+Command => cal 03 2012
+           cal
+
+Explanation => To display the calendar for the month of March 2012 in Linux
+               To display the calendar for the current month and year
+
+2)List all the files and directories of the directory /usr/lib on the terminal. Now put the same information in a file named results. 
+  Display the contents of the file results now.
+
+Command => ls -l /usr/lib
+           ls -l /usr/lib > results
+           cat results
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+File Systems 
+
+1)Make a directory structure like this in your home directory
+
+COmmand => mkdir demodir
+           cd demodir
+           mkdir inside_demo also_inside_demo
+           cd also_inside_demo
+           mkdir abc abc_123
+
+Explanation => mkdir -> to create a directory
+               cd -> change directory
+
+2) Remove the also_inside_demo directory
+
+Command => rm -r also_inside_demo
+           rmdir also_inside_demo
+
+Explanation => -r -> to recursively remove all in the directory
+               rmdir -> remove directory if it is empty
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+File Attributes
+
+1. Create a file abc.txt and change the ownership of this file to some other user on your machine,
+   and also change the group to family.
+
+Command => touch abc.txt
+           sudo useradd newuser
+           sudo groupadd family
+           chown newuser:family abc.txt
+           ls -l abc.txt
+Explanation => chown -> change ownership of files
+               useradd -> Adds a new user
+               groupadd -> Adds a new group
+
+2. Create a file exercise.txt and make it executable.
+
+Command => touch exercise.txt
+           chmod +x exercise.txt
+
+Explanation => Make the file executable using the chmod command
+
+3. Create a file test.txt on your desktop and identify its inode number, also create a softlink
+   for test.txt in your home.
+
+Command => touch test.txt
+           ls -li
+           ln -s /home/user/Desktop/test.txt /home
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Redirection of Pipes
+
+1. Create a file name error_log in your current directory. Suppose you do not have any file named aa11 in your current directory. 
+   How  can you redirect the error message to the file error_log when we apply the command "wc -l aa11" ?  
+   How can you ensure that all the error log are appended to the error_log file?
+
+Command => touch error_log
+           wc -l aa11 2> error_log
+           wc -l aa11 2>> error_log
+
+Explanation => > -> redirection 
+               >> -> redirection with appending
+               file descriptor 2 is used for standard error (stderr).
+
+2. Create  files named test1, test2, testa, testb
+   How can you count the number of files starting with test and then having only one digit in their name using only a single line command ?
+
+Command => touch test1 test2 testa testb
+           ls | grep -c "^test[0-9]$"
+
+Explanation => The ls command lists all of the files in the current directory.
+               The grep command filters the output of the ls command to only include files that start with test and then have only one digit in their name.
+               The wc -l command counts the number of lines in the output of the grep command.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Working with processes
+
+1. Open a terminal. Now spawn three shell processes one after another i.e. first spawn one shell, then from the spawned shell, spawn one new shell and so on. Now, 
+   how can you see the PID of the current shell ? How can you see the PID of the shell which is the grandparent of the current shell?
+
+Command => /bin/bash -i
+            /bin/bash -i
+            /bin/bash -i
+            ps all
+            pstree
+
+Explanation => ps all would show all the running process and their ids
+               pstree shows the hierarchy of processes
+
+2. How can you see all the processes (both system & user processes) in your computer?
+   The output can be quite large.  How can you view the output as multipage output ? 
+   How can you store the output in a file named process_info?
+
+Command => ps -e 
+           ps -e | more
+           ps -e > process_info
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
