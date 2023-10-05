@@ -4,7 +4,7 @@ Spoken Tutorial - Bash Scripting
 
 Module 4
 
------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Logical Operators
 
@@ -17,7 +17,7 @@ Script => if [[ -f "$1" && -x "$1" ]]; then
               echo "File $1 does not exist or is not executable."
           fi
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Arithmetic Comparision
 
@@ -32,7 +32,7 @@ Script => read -p "Guess The Number " num
               echo "You Have Guessed Right"
           fi
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 String and File attributes
 
@@ -62,7 +62,7 @@ String and File attributes
         fi
     fi
 
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Conditional Loops
 
@@ -85,6 +85,122 @@ Script => read -p "Enter a value for n: " n
           done
           echo "The Total Sum Is $sum"
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+More on Loops
+
+1) Retype nested-for.sh bash script using nested while loop
+
+ Script =>  for dir in test*; do
+            echo "Files in $dir directory:"
+            echo ""
+
+            while IFS= read -r -d $'\0' file; do
+                echo "$file"
+            done < <(find "$dir" -maxdepth 1 -type f -print0)
+
+            echo "------------------------"
+        done
+
+2) Save your program with the name: nested-while.sh
+
+Command => mv nested-for.sh nested-while.sh
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Case statement
+
+1) Write a menu driven program for mathematical calculation
+    a. It should take user inputs a and b
+    b. It should ask for mathematical operator (+, -, / and *).
+    c. Do the calculation
+    d. Print the output
+
+Script => read -p "Enter Your Choice 1.Add 2.Sub 3.Mul 4.Div " choice
+          read -p "Enter The 1st Number " num1
+          read -p "Enter The 2nd Number " num2
+          case $choice in 
+                1) echo "$((num1+num2))" ;;
+                2) echo "$((num1-num2))" ;;
+                3) echo "$((num1*num2))" ;; 
+                4) echo "$((num1/num2))" ;;
+          esac
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Using File Descriptors
+
+1) Try to append few lines to a file test.txt using file descriptor.
+2) Display the content of the file using file descriptor.
+
+ Script => read -p "Enter Your Name " name
+           exec 3> test.txt
+           echo "Welcome $name" >&3
+           exec 3<&-
+           exec 3< test.txt\
+           cat <&3 
+           exec 3<&-
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Basics of functions
+
+1) Write a program with two functions: 
+    a. The first function should display diskspace usage in human readable form.
+       (Hint: df -h)
+    b. The second function should display filesystem usage in human readable form.
+       (Hint: du -h)
+
+Script => function disk_space
+          {
+              echo "Disk Space" 
+              df -h
+          }
+          function file_system
+          {
+              echo "File System"
+              du -h
+          }
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+More on functions
+
+1) Write a program, 
+    a. where the function accepts two arguments.
+    b. The function should multiply the two arguments.
+    c. Make 3 function calls with arguments - (1, 2), (2, 3) and (3, 4)
+
+Script => function multiplication()
+          {
+              echo $(($1*$2))
+          }
+          multiplication 1 2
+          multiplication 2 3
+          multiplication 3 4
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Arrays and functions
+
+1) Write a program,
+     a. Where a function adds all the elements in an array. 
+     b. The function should display the sum of elements.
+     c. Make 2 function calls with array elements- (1, 2, 3) and (4, 5, 6).
+
+Script =>   sumArrayElements() {
+                local sum=0
+                for element in "${@}"; do
+                    sum=$((sum + element))
+                done
+                echo "Sum of elements: $sum"
+            }
+            a1=(1 2 3)
+            a2=(4 5 6)
+            echo "Calling with array1: ${a1[@]}"
+            sumArrayElements "${a1[@]}"
+            echo "Calling with array2: ${a2[@]}"
+            sumArrayElements "${a2[@]}"
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
